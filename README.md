@@ -21,3 +21,7 @@ ___Extras:___
 __GIT PAGES:__
 
 [pages](https://giselemm.github.io/todo-vanillajs/)
+
+___QR___
+
+![frametodo](https://github.com/user-attachments/assets/c204eaee-aaec-4674-a84d-da0717cedc47)
