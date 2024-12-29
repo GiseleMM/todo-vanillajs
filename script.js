@@ -7,6 +7,7 @@ const ALL = "all";
 const TASKSTORAGE = "tasks";
 
 const task = document.getElementById("tarea"); //input
+const pendingTaskSpan=document.getElementById("contadorPendientes");
 const addButton = document.getElementById("add");
 const deleteButton = document.getElementById("delete");
 const editButton = document.getElementById("edit");
@@ -23,10 +24,24 @@ const modalCancel = document.getElementById("editDeleteModalCancel");
 const modalSave = document.getElementById("editDeleteModalSave");
 const ID_INPUT_MODAL = "inputTaskEdit"; //id del input del modal para la edicion;
 
+
 //read tasks localstorage
 getTasksLocalStorage().then((tasks) => {
   addToTaskList(tasks);
+addPendingTaskSpan();
 });
+
+//calcula cantidad  tareas  pendiente
+function addPendingTaskSpan()
+{
+  let pendingTasks=tasks.filter(t=>t.state==PENDING);
+  if(pendingTasks)
+  {
+    let numPending=pendingTasks.length;
+    pendingTaskSpan.innerHTML=numPending;
+
+  }
+}
 
 //evento cada vez q cambia el select cambia el filtrado VISUAL
 filterSelect.addEventListener("change", (evento) => {
@@ -67,6 +82,7 @@ addButton.addEventListener("click", (evento) => {
       tasks.push(newTask);
       console.log(tasks);
       saveTasksLocalStorage(tasks);
+      addPendingTaskSpan();
       addToTaskList(tasks);
     } else {
       console.log("Repeated");
@@ -138,6 +154,7 @@ function switchStateTask(taskindex, state) {
       console.log(t.state);
       console.log(tasks);
       addToTaskList(tasks);
+      addPendingTaskSpan();
       saveTasksLocalStorage();
     }
   }
