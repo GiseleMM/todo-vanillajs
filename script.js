@@ -219,6 +219,7 @@ function configFunctionDelete() {
     tasks = tasks.filter((t) => t.descript.trim() != descriptTask.trim()); //remove del array
     addToTaskList(tasks);
     saveTasksLocalStorage();
+    addPendingTaskSpan();
     removeModeEditDelete();
     closeModal();
   };
@@ -248,6 +249,7 @@ function configMessageEdit() {
   return { title, msj };
 }
 function configFunctionEdit() {
+  let descriptTask = task.value;
   const cancelEdit = (evento) => {
     console.log("cancel");
 
